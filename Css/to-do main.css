@@ -1,200 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+
 body {
-    background: url('/Resources/back.jpg') no-repeat center center fixed; 
-    background-size: cover;
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    min-height: 100vh;
-    margin: 0;
-    padding-top: 30px;
-    overflow-y: hidden;
-  }
-  a{
-    text-decoration: none;
-    color: #ffffff;
-  }
-  .main{
-    width: auto;
-    height: 100%;
-  }
+  background: url('/Resources/back.jpg') no-repeat center center fixed; 
+  background-size: cover;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 30px 0px;
+  overflow-y: hidden;
+  font-family: 'Noto Sans';
+}
+
+a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 30px); /* Учитываем padding-top body */
+  margin-bottom: 30px;
+}
+
+.main {
+  width: auto;
+  height: calc(100vh - 30px); /* Такая же высота как у .container */
+  display: flex;
+  flex-direction: column;
+}
 
 .logo {
-    padding: 10px;
-    color: white;
-    font-size: 20pt;
-    letter-spacing: 8px;
-    font-weight: 100;
-    margin-bottom: 15px;
-    text-align: center;
+  padding: 10px;
+  color: white;
+  font-size: 30pt;
+  letter-spacing: 3px;
+  margin-bottom: 15px;
+  text-align: center;
+  
 }
 
 .create-line { 
-    width: 90%; 
-    border-top: 3px solid #ffffff; 
-    margin: auto;
+  width: 90%; 
+  border-top: 3px solid #ffffff; 
+  margin: auto;
 }
 
-.header{
-    padding: 20px;
-    backdrop-filter: blur(10px);
-    opacity: 0.8;
-    background: rgba(255, 255, 255, 0.09);
-    flex-direction: column;
-    justify-content: space-between;
-    margin: 0px 50px ;
-    border-radius: 10px;
-    height: 90%;
-    width: 250px;
-    position: relative;
+.header {
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  opacity: 0.8;
+  background: rgba(255, 255, 255, 0.09);
+  flex-direction: column;
+  justify-content: space-between;
+  margin-right: 60px;
+  border-radius: 10px;
+  height: calc(100vh - 30px); /* Полная высота минус padding-top body */
+  width: 250px;
+  position: relative;
+  margin-bottom: 30px;
 }
-.nav-buttons{
-    margin-top: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+
+.nav-buttons {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
+
 .button {
-    backdrop-filter: blur(10px);
-    opacity: 1;
-    background: rgba(140, 140, 140, 0.075);
-    margin: 10px;
-    display: inline-flex;
-    height: 60px;
-    width: 220px;
-    border-radius: 10px;
-    text-transform: uppercase;
-    text-decoration: none;
-    font-size: 12pt;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    color: #ffffff;
-    letter-spacing: 1px;
-    cursor: pointer;
-  }
-  .button-create {
-    backdrop-filter: blur(10px);
-    opacity: 1;
-    background: rgba(140, 140, 140, 0.078);
-    margin: 20px;
-    display: inline-flex;
-    height: 40px;
-    width: 250px;
-    border-radius: 10px;
-    text-transform: uppercase;
-    text-decoration: none;
-    font-size: 12pt;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    bottom: 0;
-    position: absolute;
-    color: #ffffffd1;
-    letter-spacing: 1px;
-    cursor: pointer;
-  }
-
-  .button.active, .button-create.active {
-    backdrop-filter: blur(10px);
-    opacity: 0.8;
-    background-color: #e0e0e0; /* пример активного состояния */
-    color: #000;
+  backdrop-filter: blur(10px);
+  opacity: 1;
+  background: rgba(140, 140, 140, 0.075);
+  margin: 10px;
+  display: inline-flex;
+  height: 60px;
+  width: 220px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 13pt;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: #ffffff;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+.button:hover {
+  background: rgba(140, 140, 140, 0.2);
+  opacity: 0.9;
 }
 
-  .date-time{
-    backdrop-filter: blur(10px);
-    opacity: 0.8;
-    background: rgba(255, 255, 255, 0.09);
-    border-radius: 10px;
-    width: 800px; /* Adjust width as needed */
-    height: 150px;
-    padding: 0px 20px 0px 40px;
-    display: flex;
-    align-items: center;
-    
-  }
-
-  .date{
-    color: white;
-    font-size: 30pt;
-    letter-spacing: 8px;
-    font-weight: 100;
-    padding-left: 10px;
-  }
-
-  .date2{
-    padding-top: 20px;
-    color: rgb(141, 141, 141);
-    font-size: 20pt;
-    letter-spacing: 8px;
-    font-weight: 100;
-  }
-
-  .verticalLine {
-    border-right: 2px solid rgb(255, 255, 255);
-    height: 80%;
-    margin: 30px 30px 30px 60px;
-  }
-
-  .time{
-    color: #ffffff;
-    text-align: center;
-    padding-left: 25px;
-    font-size: 35pt;
-    letter-spacing: 8px;
-    font-weight: 100;
-
-  } 
-
-  .task-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    margin-top: 50px;
-    backdrop-filter: blur(10px);
-    opacity: 0.8;
-    background: rgba(255, 255, 255, 0.09);
-    border-radius: 10px;
-    width: 100%;
-    min-height: 700px;
-    overflow-y: auto;
+.button-create {
+  backdrop-filter: blur(10px);
+  opacity: 1;
+  background: rgba(140, 140, 140, 0.078);
+  margin: 20px;
+  display: inline-flex;
+  height: 40px;
+  width: 250px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 13pt;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  bottom: 0;
+  position: absolute;
+  color: #ffffffd1;
+  letter-spacing: 1px;
+  cursor: pointer;
 }
-  .search-bar {
-    display: flex; 
-    align-items: center; 
-    gap: 10px; 
-    margin: 20px 0;
-    height: auto; 
+.button-create:hover {
+  background: rgba(140, 140, 140, 0.2);
+  opacity: 0.9;
 }
+
+.button.active, .button-create.active {
+  backdrop-filter: blur(10px);
+  opacity: 0.8;
+  border-color: #e0e0e0;
+  border-style: groove;
+
+}
+
+.date-time {
+  backdrop-filter: blur(10px);
+  opacity: 0.8;
+  background: rgba(255, 255, 255, 0.09);
+  border-radius: 10px;
+  width: 800px;
+  height: 150px;
+  padding: 10px 20px 10px 40px;
+  display: flex;
+  align-items: center;
+  
+}
+
+.date {
+  color: white;
+  font-size: 30pt;
+  letter-spacing: 8px;
+  font-weight: 100;
+  padding-left: 10px;
+  font-weight: 400;
+}
+
+.date2 {
+  
+  color: rgb(141, 141, 141);
+  font-size: 15pt;
+  letter-spacing: 8px;
+  font-weight: 300;
+}
+
+.verticalLine {
+  border-right: 2px solid rgb(255, 255, 255);
+  height: 80%;
+  margin: 30px 30px 30px 120px;
+}
+
+.time {
+  color: #ffffff;
+  text-align: center;
+  padding-left: 25px;
+  font-size: 35pt;
+  letter-spacing: 8px;
+  font-weight: 100;
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  backdrop-filter: blur(10px);
+  opacity: 0.8;
+  background: rgba(255, 255, 255, 0.09);
+  border-radius: 10px;
+  width: 100%;
+  min-height: 700px;
+  overflow-y: auto;
+  margin-bottom: 30px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+  height: auto;
+}
+
 .add-task {
-    margin: 0px 20px;
-    height: 20px;
-    width: 450px;
-    border-radius: 10px;
-    padding: 5px; 
-    border: none; 
-    background: rgba(255, 255, 255, 0.1); 
-    color: white; 
-    font-size: 20px;
-    padding: 15px;
+  margin: 0px 20px;
+  height: 20px;
+  width: 450px;
+  border-radius: 10px;
+  padding: 5px;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 20px;
+  padding: 15px;
 }
+
 .button-do {
-    backdrop-filter: blur(10px);
-    opacity: 1;
-    background: rgba(140, 140, 140, 0.044);
-    display: inline-flex;
-    height: 50px; 
-    width: 250px; 
-    border-radius: 10px;
-    text-transform: uppercase;
-    text-decoration: none;
-    font-size: 12pt;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    color: rgba(255, 255, 255, 0.574); 
-    letter-spacing: 2px;
+  backdrop-filter: blur(10px);
+  opacity: 1;
+  background: rgba(140, 140, 140, 0.044);
+  display: inline-flex;
+  height: 50px;
+  width: 250px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 12pt;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.574);
+  letter-spacing: 2px;
+}
+.button-do:hover {
+  background: rgba(140, 140, 140, 0.2);
+  opacity: 0.9;
+}
+
+.task-list{
+  height: 100%;
 }
 
 .task-item {
@@ -203,44 +243,47 @@ body {
   background: rgba(255, 255, 255, 0.09);
   padding: 20px 20px 20px 20px;
   border-radius: 10px;
-  width: 90%; 
-  height: auto; 
-  display: flex; 
-  align-items: center; 
-  flex-direction: row; 
-  margin: 10px auto; 
+  width: 90%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin: 10px auto;
   justify-content: space-between;
 }
-.check-box{
+
+.check-box {
   height: 30px;
   width: 30px;
   color: #ffffff;
   border-radius: 20px;
 }
-.task-text{
+
+.task-text {
   color: #ffffff;
   font-size: 25px;
   width: 150px;
 }
 
-.verticalLine-item{
-    border-right: 2px solid rgb(255, 255, 255);
-    height: 100%;
-    margin: 0px 0px 0px 300px;
-    
+.verticalLine-item {
+  border-right: 2px solid rgb(255, 255, 255);
+  height: 100%;
+  margin: 0px 0px 0px 300px;
 }
-.task-icons{
+
+.task-icons {
   padding-right: 10px;
-  
 }
-.icon{
+
+.icon {
   height: 50px;
   width: 50px;
   color: #ffffff;
   border-radius: 20px;
   margin-left: 30px;
 }
-.base-message{
+
+.base-message {
   color: #ffffff;
   font-size: 25px;
   width: auto;
