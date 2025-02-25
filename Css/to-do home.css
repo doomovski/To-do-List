@@ -1,0 +1,94 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: url('/Resources/back.jpg') no-repeat center center fixed; 
+  background-size: cover;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 30px;
+}
+
+/* Home page */
+
+.container {
+  backdrop-filter: blur(10px);
+  opacity: 0.8;
+  background: rgba(255, 255, 255, 0.09);
+  padding: 20px;
+  border-radius: 10px;
+  width: 500px; /* Adjust width as needed */
+  height: 250px;
+}
+
+.logo {
+  font-style: lig;
+  padding: 10px;
+  font-size: 2em;
+  color: white;
+  font-size: 20pt;
+  letter-spacing: 8px;
+  font-weight: 100;
+}
+/* Button Styles */
+
+.button {
+  backdrop-filter: blur(10px);
+  opacity: 0.8;
+  background: rgba(255, 255, 255, 0.09);
+  display: inline-flex;
+  height: 80px;
+  width: 250px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 12pt;
+  letter-spacing: 30pt;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-top: 85px;
+  margin-left: 46%;
+  margin-right: 8%;
+}
+
+a {
+  color: #BFC0C0;
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+
+#button-2 {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+#button-2 a {
+  position: relative;
+  transition: all .35s ease-Out;
+}
+
+#slide {
+  width: 100%;
+  height: 100%;
+  left: -250px;
+  background: #BFC0C0;
+  position: absolute;
+  transition: all .35s ease-Out;
+  bottom: 0;
+}
+
+#button-2:hover #slide {
+  left: 0;
+}
+
+#button-2:hover a {
+  color: #2D3142;
+}
+
+/* End Home page */
+
+
