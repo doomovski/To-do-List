@@ -1,169 +1,208 @@
-// Получаем необходимые элементы
-const searchBar = document.querySelector('.search-bar');
-const taskInput = searchBar.querySelector('.add-task');
-const addTaskButton = searchBar.querySelector('.button-do');
-const taskList = document.querySelector('.task-list');
-const trashIcon = searchBar.querySelector('span'); // Иконка 🗑️ для очистки списка
+document.addEventListener('DOMContentLoaded', function() {
+    const buttonsContainer = document.querySelector('.nav-buttons');
+    let buttons = document.querySelectorAll('.nav-buttons .button, .nav-buttons .button-create');
+    const taskList = document.querySelector('.task-list');
+    const searchBar = document.querySelector('.search-bar');
+    const taskInput = searchBar.querySelector('.add-task');
+    const addTaskButton = searchBar.querySelector('.button-do');
+    const trashIcon = searchBar.querySelector('span');
+    
+    let activeGroup = 'today';
+    // Объект для хранения задач по группам
+    const tasksByGroup = {
+        'today': [],
+        'tomorrow': []
+    };
 
-// Функция добавления новой задачи
-function addTask(text) {
-    if (!text || text.trim() === '') return; // Проверяем, не пустой ли текст
-
-    // Создаём новый элемент задачи
-    const taskItem = document.createElement('div');
-    taskItem.className = 'task-item';
-
-    // HTML для новой задачи, включая ваш дизайн с вертикальной линией
-    taskItem.innerHTML = `
-        <input class="check-box" type="checkbox">
-        <span class="task-text">${text}</span>
-        <div class="verticalLine-item">/</div>
-        <div class="task-icons">
-            <span class="icon" onclick="editTask(this)">⚙️</span>
-            <span class="icon" onclick="deleteTask(this)">🗑️</span>
-        </div>
-    `;
-
-    // Добавляем задачу в список после search-bar
-    taskList.insertBefore(taskItem, taskList.querySelector('.task-item') || null);
-
-    // Очищаем поле ввода
-    taskInput.value = '';
-}
-
-// Обработчик клика по кнопке "Создать новое дело"
-addTaskButton.addEventListener('click', () => {
-    const taskText = taskInput.value.trim();
-    addTask(taskText);
-});
-
-// Обработчик нажатия Enter в поле ввода
-taskInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        const taskText = taskInput.value.trim();
-        addTask(taskText);
+    // Функция обновления слушателей кнопок
+    function updateButtonListeners() {
+        buttons = document.querySelectorAll('.nav-buttons .button, .nav-buttons .button-create');
+        buttons.forEach(button => {
+            button.removeEventListener('click', handleButtonClick);
+            button.addEventListener('click', handleButtonClick);
+        });
     }
-});
 
-// Функция удаления задачи (для иконки 🗑️ в .task-item)
-function deleteTask(icon) {
-    const taskItem = icon.closest('.task-item');
-    if (taskItem) {
-        taskItem.remove();
+    // Обработчик клика по кнопкам
+    function handleButtonClick() {
+        buttons.forEach(btn => btn.classList.remove('active'));
+        this.classList.add('active');
+
+        const groupName = this.getAttribute('data-group');
+        if (groupName) {
+            activeGroup = groupName;
+            renderTasks();
+        }
     }
-}
 
-// Функция редактирования задачи (для иконки ⚙️)
-function editTask(icon) {
-    const taskItem = icon.closest('.task-item');
-    const taskText = taskItem.querySelector('.task-text');
-    const currentText = taskText.textContent;
+    // Отрисовка задач текущей группы
+    function renderTasks() {
+        const tasks = tasksByGroup[activeGroup] || [];
+        const taskItems = taskList.querySelectorAll('.task-item');
+        taskItems.forEach(item => item.remove()); // Очищаем текущий список
 
-    // Создаём поле ввода для редактирования
-    const input = document.createElement('input');
-    input.value = currentText;
-    input.className = 'edit-input';
-    input.style.width = '200px'; // Примерная ширина для ввода
-    input.style.borderRadius = '5px';
-    input.style.padding = '5px';
-    input.style.background = 'rgba(255, 255, 255, 0.1)'; // Соответствует вашему дизайну
-    input.style.color = 'white'; // Белый текст для контраста
+        tasks.forEach(task => {
+            const taskItem = document.createElement('div');
+            taskItem.className = 'task-item';
+            taskItem.innerHTML = `
+                <input class="check-box" type="checkbox" ${task.completed ? 'checked' : ''}>
+                <span class="task-text" style="text-decoration: ${task.completed ? 'line-through' : 'none'}; opacity: ${task.completed ? '0.5' : '1'}">${task.text}</span>
+                <div class="verticalLine-item">/</div>
+                <div class="task-icons">
+                    <span class="icon" onclick="editTask(this)">⚙️</span>
+                    <span class="icon" onclick="deleteTask(this)">🗑️</span>
+                </div>
+            `;
+            taskList.appendChild(taskItem);
+        });
+    }
 
-    // Заменяем текст на поле ввода
-    taskText.replaceWith(input);
+    // Создание новой группы
+    document.querySelector('.button-create').addEventListener('click', function() {
+        const newGroupName = prompt('Введите название новой группы:');
+        if (!newGroupName || newGroupName.trim() === '') return;
 
-    // Фокус на поле ввода
-    input.focus();
+        const groupId = newGroupName.toLowerCase().replace(/\s+/g, '-');
+        if (tasksByGroup[groupId]) {
+            alert('Группа с таким названием уже существует!');
+            return;
+        }
 
-    // Обработчик нажатия Enter для сохранения изменений
-    input.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
+        // Создаем новую кнопку
+        const newButton = document.createElement('div');
+        newButton.className = 'button';
+        newButton.textContent = newGroupName;
+        newButton.setAttribute('data-group', groupId);
+        buttonsContainer.insertBefore(newButton, this);
+
+        // Инициализируем пустой массив задач для новой группы
+        tasksByGroup[groupId] = [];
+
+        // Активируем новую группу
+        buttons.forEach(btn => btn.classList.remove('active'));
+        newButton.classList.add('active');
+        activeGroup = groupId;
+        renderTasks();
+
+        updateButtonListeners();
+    });
+
+    // Инициализация
+    buttons.forEach(button => button.addEventListener('click', handleButtonClick));
+    if (buttons.length > 0) {
+        buttons[0].classList.add('active');
+        buttons[0].setAttribute('data-group', 'today');
+        buttons[1].setAttribute('data-group', 'tomorrow');
+        renderTasks();
+    }
+
+    // Добавление задачи
+    function addTask(text) {
+        if (!text || text.trim() === '') return;
+
+        if (!tasksByGroup[activeGroup]) tasksByGroup[activeGroup] = [];
+        tasksByGroup[activeGroup].unshift({ text, completed: false });
+        renderTasks();
+        taskInput.value = '';
+    }
+
+    addTaskButton.addEventListener('click', () => addTask(taskInput.value.trim()));
+    taskInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') addTask(taskInput.value.trim());
+    });
+
+    // Удаление задачи
+    window.deleteTask = function(icon) {
+        const taskItem = icon.closest('.task-item');
+        const taskText = taskItem.querySelector('.task-text').textContent;
+        tasksByGroup[activeGroup] = tasksByGroup[activeGroup].filter(task => task.text !== taskText);
+        renderTasks();
+    };
+
+    // Редактирование задачи
+    window.editTask = function(icon) {
+        const taskItem = icon.closest('.task-item');
+        const taskText = taskItem.querySelector('.task-text');
+        const currentText = taskText.textContent;
+
+        const input = document.createElement('input');
+        input.value = currentText;
+        input.className = 'edit-input';
+        input.style.cssText = 'width: 200px; border-radius: 5px; padding: 5px; background: rgba(255, 255, 255, 0.1); color: white;';
+
+        taskText.replaceWith(input);
+        input.focus();
+
+        input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && input.value.trim()) {
+                const newText = input.value.trim();
+                const taskIndex = tasksByGroup[activeGroup].findIndex(task => task.text === currentText);
+                if (taskIndex !== -1) {
+                    tasksByGroup[activeGroup][taskIndex].text = newText;
+                    renderTasks();
+                }
+            }
+        });
+
+        input.addEventListener('blur', () => {
             const newText = input.value.trim();
             if (newText) {
-                const newSpan = document.createElement('span');
-                newSpan.className = 'task-text';
-                newSpan.textContent = newText;
-                input.replaceWith(newSpan);
+                const taskIndex = tasksByGroup[activeGroup].findIndex(task => task.text === currentText);
+                if (taskIndex !== -1) {
+                    tasksByGroup[activeGroup][taskIndex].text = newText;
+                    renderTasks();
+                }
+            } else {
+                renderTasks();
+            }
+        });
+    };
+
+    // Очистка списка текущей группы
+    trashIcon.addEventListener('click', () => {
+        tasksByGroup[activeGroup] = [];
+        renderTasks();
+    });
+
+    // Обработчик checkbox
+    taskList.addEventListener('change', (e) => {
+        if (e.target.className === 'check-box') {
+            const taskItem = e.target.closest('.task-item');
+            const taskText = taskItem.querySelector('.task-text').textContent;
+            const taskIndex = tasksByGroup[activeGroup].findIndex(task => task.text === taskText);
+            if (taskIndex !== -1) {
+                tasksByGroup[activeGroup][taskIndex].completed = e.target.checked;
+                renderTasks();
             }
         }
     });
 
-    // Обработчик потери фокуса (если пользователь кликает вне поля)
-    input.addEventListener('blur', () => {
-        const newText = input.value.trim();
-        if (newText) {
-            const newSpan = document.createElement('span');
-            newSpan.className = 'task-text';
-            newSpan.textContent = newText;
-            input.replaceWith(newSpan);
-        } else {
-            input.replaceWith(taskText); // Восстанавливаем оригинальный текст, если поле пустое
-        }
-    });
-}
-
-// Функция очистки всего списка задач (по клику на иконку 🗑️ в search-bar)
-trashIcon.addEventListener('click', () => {
-    const taskItems = taskList.querySelectorAll('.task-item');
-    taskItems.forEach(item => item.remove());
-});
-
-// Обработчик изменения состояния checkbox (отметка задачи как выполненной/невыполненной)
-taskList.addEventListener('change', (e) => {
-    if (e.target.className === 'check-box') {
-        const taskItem = e.target.closest('.task-item');
-        const taskText = taskItem.querySelector('.task-text');
-        if (e.target.checked) {
-            taskText.style.textDecoration = 'line-through'; // Зачёркиваем текст
-            taskText.style.opacity = '0.5'; // Снижаем непрозрачность
-        } else {
-            taskText.style.textDecoration = 'none'; // Убираем зачёркивание
-            taskText.style.opacity = '1'; // Восстанавливаем непрозрачность
-        }
-    }
-});
-
-    // Функция для форматирования времени с ведущими нулями (например, 09:15:00)
+    // Дата и время
     function padZero(num) {
         return num.toString().padStart(2, '0');
     }
 
-    // Функция для получения дня недели и даты на русском
     function getFormattedDate() {
         const now = new Date();
         const days = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
         const months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
-        
-        const dayOfWeek = days[now.getDay()];
-        const day = now.getDate();
-        const month = months[now.getMonth()];
-        const year = now.getFullYear();
-
-        return `${dayOfWeek}, ${day} ${month}`;
+        return `${days[now.getDay()]}, ${now.getDate()} ${months[now.getMonth()]}`;
     }
 
-    // Функция для получения текущего времени в формате ЧЧ:ММ:СС
     function getFormattedTime() {
         const now = new Date();
-        const hours = padZero(now.getHours());
-        const minutes = padZero(now.getMinutes());
-        const seconds = padZero(now.getSeconds());
-        return `${hours}:${minutes}:${seconds}`;
+        return `${padZero(now.getHours())}:${padZero(now.getMinutes())}:${padZero(now.getSeconds())}`;
     }
 
-    // Функция обновления даты и времени
     function updateDateTime() {
         const date2Element = document.querySelector('.date2');
         const timeElement = document.querySelector('.time');
-
         if (date2Element && timeElement) {
             date2Element.textContent = getFormattedDate();
             timeElement.textContent = getFormattedTime();
         }
     }
 
-    // Обновляем дату и время сразу при загрузке страницы
     updateDateTime();
-
-    // Обновляем каждую секунду (1000 мс)
     setInterval(updateDateTime, 1000);
+});

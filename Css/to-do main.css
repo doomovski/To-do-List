@@ -14,7 +14,8 @@ body {
     color: #ffffff;
   }
   .main{
-    height: 644px;
+    width: auto;
+    height: 100%;
   }
 
 .logo {
@@ -70,6 +71,7 @@ body {
     overflow: hidden;
     color: #ffffff;
     letter-spacing: 1px;
+    cursor: pointer;
   }
   .button-create {
     backdrop-filter: blur(10px);
@@ -90,7 +92,16 @@ body {
     position: absolute;
     color: #ffffffd1;
     letter-spacing: 1px;
+    cursor: pointer;
   }
+
+  .button.active, .button-create.active {
+    backdrop-filter: blur(10px);
+    opacity: 0.8;
+    background-color: #e0e0e0; /* пример активного состояния */
+    color: #000;
+}
+
   .date-time{
     backdrop-filter: blur(10px);
     opacity: 0.8;
@@ -139,32 +150,32 @@ body {
   .task-list {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Центрируем .search-bar по горизонтали */
+    align-items: center; 
     margin-top: 50px;
     backdrop-filter: blur(10px);
     opacity: 0.8;
     background: rgba(255, 255, 255, 0.09);
     border-radius: 10px;
     width: 100%;
-    height: 700px;
+    min-height: 700px;
     overflow-y: auto;
 }
   .search-bar {
-    display: flex; /* Сохраняем flex для размещения элементов в ряд */
-    align-items: center; /* Выравниваем элементы по центру вертикально */
-    gap: 10px; /* Добавляем небольшой интервал между input и кнопкой */
-    margin: 20px 0; /* Добавляем отступы сверху и снизу для визуальной гармонии */
-    height: auto; /* Убираем фиксированную высоту, чтобы подстраиваться под содержимое */
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+    margin: 20px 0;
+    height: auto; 
 }
 .add-task {
     margin: 0px 20px;
     height: 20px;
     width: 450px;
     border-radius: 10px;
-    padding: 5px; /* Добавляем небольшой внутренний отступ для удобства */
-    border: none; /* Убираем стандартную границу, если она есть */
-    background: rgba(255, 255, 255, 0.1); /* Соответствует вашему дизайну */
-    color: white; /* Белый текст для контраста */
+    padding: 5px; 
+    border: none; 
+    background: rgba(255, 255, 255, 0.1); 
+    color: white; 
     font-size: 20px;
     padding: 15px;
 }
@@ -173,8 +184,8 @@ body {
     opacity: 1;
     background: rgba(140, 140, 140, 0.044);
     display: inline-flex;
-    height: 50px; /* Сохраняем компактную высоту */
-    width: 250px; /* Сохраняем ширину */
+    height: 50px; 
+    width: 250px; 
     border-radius: 10px;
     text-transform: uppercase;
     text-decoration: none;
@@ -182,7 +193,7 @@ body {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    color: rgba(255, 255, 255, 0.574); /* Чёрный текст для контраста с белым фоном */
+    color: rgba(255, 255, 255, 0.574); 
     letter-spacing: 2px;
 }
 
@@ -192,12 +203,12 @@ body {
   background: rgba(255, 255, 255, 0.09);
   padding: 20px 20px 20px 20px;
   border-radius: 10px;
-  width: 90%; /* Занимает 90% ширины родительского элемента */
-  height: auto; /* Убираем фиксированную высоту 5%, чтобы подстраиваться под содержимое */
-  display: flex; /* Явно указываем flex для управления выравниванием */
-  align-items: center; /* Центрируем элементы по вертикали */
-  flex-direction: row; /* Сохраняем горизонтальное расположение элементов */
-  margin: 10px auto; /* Добавляем небольшие отступы и центрируем по горизонтали */
+  width: 90%; 
+  height: auto; 
+  display: flex; 
+  align-items: center; 
+  flex-direction: row; 
+  margin: 10px auto; 
   justify-content: space-between;
 }
 .check-box{
