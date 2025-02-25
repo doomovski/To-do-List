@@ -65,7 +65,7 @@ a {
 }
 
 .nav-buttons {
-  margin-top: 15px;
+  margin-top: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -78,18 +78,18 @@ a {
   background: rgba(140, 140, 140, 0.075);
   margin: 10px;
   display: inline-flex;
-  height: 60px;
+  height: 50px;
   width: 220px;
   border-radius: 5px;
-  text-transform: uppercase;
   text-decoration: none;
-  font-size: 13pt;
+  font-size: 16pt;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   color: #ffffff;
   letter-spacing: 1px;
   cursor: pointer;
+  font-weight: 200;
 }
 .button:hover {
   background: rgba(140, 140, 140, 0.2);
@@ -288,4 +288,133 @@ a {
   font-size: 25px;
   width: auto;
   align-items: center;
+}
+
+@media only screen and (max-width: 1300px) {
+  /* Общие настройки для body и контейнеров */
+  body {
+    padding: 20px 0; /* Уменьшаем отступы сверху и снизу */
+  }
+
+  .container {
+    height: calc(100vh - 40px); /* Учитываем уменьшенный padding */
+    margin-bottom: 20px;
+  }
+
+  .header {
+    width: 200px; /* Уменьшаем ширину хедера */
+    margin-right: 30px; /* Уменьшаем правый отступ */
+    padding: 15px; /* Уменьшаем внутренние отступы */
+    height: calc(100vh - 40px); /* Соответствует новому padding */
+  }
+
+  .main {
+    height: calc(100vh - 50px);
+  }
+
+  /* Лого */
+  .logo {
+    font-size: 24pt; /* Уменьшаем размер шрифта */
+    letter-spacing: 2px;
+  }
+
+  /* Навигационные кнопки */
+  .nav-buttons {
+    margin-top: 20px;
+  }
+
+  .button {
+    width: 180px; /* Уменьшаем ширину кнопок */
+    height: 45px;
+    font-size: 14pt; /* Уменьшаем шрифт */
+    margin: 8px;
+  }
+
+  .button-create {
+    width: 200px; /* Уменьшаем ширину */
+    height: 35px;
+    font-size: 8pt;
+    margin: 15px;
+  }
+  
+  /* Блок даты и времени */
+  .date-time {
+    width: 600px; /* Уменьшаем ширину */
+    height: 120px; /* Уменьшаем высоту */
+    padding: 10px 15px 10px 30px;
+  }
+
+  .date {
+    font-size: 23pt; /* Уменьшаем шрифт */
+    letter-spacing: 6px;
+  }
+
+  .date2 {
+    padding-top: 5px;
+    font-size: 10pt;
+    letter-spacing: 10px;
+    text-wrap: nowrap;
+  }
+
+  .verticalLine {
+    margin: 20px 20px 20px 40px; /* Уменьшаем отступы */
+  }
+
+  .time {
+    font-size: 28pt; /* Уменьшаем шрифт */
+    letter-spacing: 6px;
+    padding-left: 20px;
+  }
+
+  /* Список задач */
+  .task-list {
+    margin-top: 30px; /* Уменьшаем верхний отступ */
+    min-height: 500px; /* Уменьшаем минимальную высоту */
+    margin-bottom: 20px;
+  }
+
+  .search-bar {
+    margin: 15px 0;
+    gap: 8px;
+  }
+
+  .add-task {
+    width: 350px; /* Уменьшаем ширину поля ввода */
+    font-size: 18px;
+    padding: 12px;
+    margin: 0 15px;
+  }
+
+  .button-do {
+    width: 150px; /* Уменьшаем ширину кнопки */
+    height: 45px;
+    font-size: 8pt;
+    text-align: center;
+  }
+
+  /* Элементы задач */
+  .task-item {
+    padding: 15px;
+    width: 85%; /* Уменьшаем ширину */
+  }
+
+  .check-box {
+    height: 25px;
+    width: 25px;
+  }
+
+  .task-text {
+    font-size: 20px;
+    width: 120px; /* Уменьшаем ширину текста */
+  }
+
+  .verticalLine-item {
+    margin: 0 0 0 200px; /* Уменьшаем отступ */
+  }
+
+  .icon {
+    height: 40px;
+    width: 40px;
+    margin-left: 20px;
+  }
 }
