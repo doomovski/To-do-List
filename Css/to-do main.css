@@ -227,10 +227,14 @@ a {
   overflow: hidden;
   color: rgba(255, 255, 255, 0.574);
   letter-spacing: 2px;
+  
 }
 .button-do:hover {
   background: rgba(140, 140, 140, 0.2);
   opacity: 0.9;
+}
+.button-do::before{
+  content: 'Создать новое дело';
 }
 
 .task-list{
@@ -289,6 +293,7 @@ a {
   width: auto;
   align-items: center;
 }
+
 
 @media only screen and (max-width: 1300px) {
   /* Общие настройки для body и контейнеров */
@@ -418,3 +423,146 @@ a {
     margin-left: 20px;
   }
 }
+@media only screen and (max-width: 500px) {
+  /* Общие настройки для body */
+  body {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    overflow-y: auto; /* Разрешаем прокрутку для длинных списков */
+    min-height: 0vh;
+  }
+
+  /* Скрываем элементы, не нужные на мобильных */
+  .date-time {
+    display: none;
+  }
+
+  .create-line {
+    display: none;
+  }
+
+  /* Контейнер */
+  .container {
+    width: 100%;
+    height: auto; /* Убираем фиксированную высоту, чтобы подстраиваться под контент */
+    flex-direction: column; /* Элементы .header и .main идут вертикально */
+  }
+
+  /* Хеддер */
+  .header {
+    margin: auto;
+    width: 80%;
+    height: 80px; /* Фиксированная высота для шапки */
+    flex-direction: row; /* Элементы в ряд */
+    align-items: center; /* Выравниваем по центру по вертикали */
+    justify-content: space-between; /* Распределяем элементы равномерно с краев */
+    padding: 0 20px; /* Внутренние отступы */
+    background: rgba(255, 255, 255, 0.09); /* Сохраняем прозрачность из десктопного стиля */
+    backdrop-filter: blur(10px);
+    opacity: 0.8;
+    border-radius: 10px; /* Убираем скругления на мобильных */
+  }
+
+  /* Логотип, кнопки и линия скрыты на мобильных */
+  .logo {
+    display: none;
+  }
+
+  .nav-buttons {
+    display: none; /* Скрываем навигационные кнопки, позже добавим функционал через бургер-меню */
+  }
+
+  /* Основной контент */
+  .main {
+    width: 100%;
+    height: auto; /* Подстраиваем под содержимое */
+    padding: 0; /* Убираем лишние отступы */
+  }
+
+  /* Список задач */
+  .task-list {
+    width: 90%;
+    height: calc(80vh - 30px);
+    margin: 0 auto; /* Центрируем */
+    overflow-y: auto; /* Разрешаем прокрутку внутри */
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  /* Поисковая строка и кнопка */
+  .search-bar {
+    margin: 20px 10px;
+    gap: 5px;
+    flex-wrap: nowrap;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .add-task {
+    width: 60%;
+    max-width: 200px;
+    font-size: 16px;
+    padding: 10px;
+    margin: 0 10px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: none;
+  }
+
+  .button-do {
+    width: 40px;
+    height: 40px;
+    backdrop-filter: blur(10px);
+    opacity: 1;
+    background: rgba(140, 140, 140, 0.044);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.574);
+    position: relative;
+  }
+
+  .button-do::before {
+    content: '+';
+    font-size: 20pt;
+    color: rgba(255, 255, 255, 0.574);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .button-do:hover {
+    background: rgba(140, 140, 140, 0.2);
+    opacity: 0.9;
+  }
+
+  /* Элементы задач */
+  .task-item {
+    width: 95%;
+    padding: 10px;
+  }
+
+  .task-text {
+    font-size: 18px;
+    width: auto;
+    flex-grow: 1;
+  }
+
+  .verticalLine-item {
+    margin: 0 10px;
+  }
+
+  .icon {
+    height: 30px;
+    width: 30px;
+    margin-left: 10px;
+  }
+  
+}
+
