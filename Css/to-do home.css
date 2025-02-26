@@ -1,19 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+
 body {
   margin: 0;
   padding: 0;
   background: url('/Resources/back.jpg') no-repeat center center fixed; 
   background-size: cover;
-  font-family: Arial, sans-serif;
+  font-family: 'Noto Sans';
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  padding: 30px;
+  min-width: 300px;
 }
 
 /* Home page */
 
 .container {
+  margin: 0px 20px;
   backdrop-filter: blur(10px);
   opacity: 0.8;
   background: rgba(255, 255, 255, 0.09);
@@ -21,16 +26,24 @@ body {
   border-radius: 10px;
   width: 500px; /* Adjust width as needed */
   height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .logo {
+  text-align: center;
   font-style: lig;
-  padding: 10px;
+  padding: 20px 10px;
   font-size: 2em;
   color: white;
   font-size: 20pt;
   letter-spacing: 8px;
-  font-weight: 100;
+  font-weight: 200;
+}
+
+hr{
+  width: 90%;
 }
 /* Button Styles */
 
@@ -49,9 +62,7 @@ body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  margin-top: 85px;
-  margin-left: 46%;
-  margin-right: 8%;
+  margin: auto;
 }
 
 a {
@@ -88,7 +99,5 @@ a {
 #button-2:hover a {
   color: #2D3142;
 }
-
-/* End Home page */
 
 

@@ -1,5 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
+@keyframes slideUp {
+  from {
+      opacity: 0;
+      transform: translateY(-20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+/* Стили для задачи при добавлении */
+
+
+/* Стили для задачи при удалении */
+
 
 body {
   background: url('/Resources/back.jpg') no-repeat center center fixed; 
@@ -272,6 +299,7 @@ a {
   color: #ffffff;
   font-size: 25px;
   width: 150px;
+  white-space: nowrap;
 }
 
 .verticalLine-item {
@@ -571,7 +599,8 @@ a {
 
   /* Элементы задач */
   .task-item {
-    width: 95%;
+    margin: 5px 10px;
+    width: 90%;
     padding: 10px;
   }
 

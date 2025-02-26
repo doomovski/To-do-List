@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const trashIcon = searchBar.querySelector('span');
     
     let activeGroup = 'today';
-    // Объект для хранения задач по группам
     const tasksByGroup = {
         'today': [],
         'tomorrow': []
@@ -35,11 +34,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Отрисовка задач текущей группы
+    // Отрисовка задач текущей группы с анимацией
     function renderTasks() {
         const tasks = tasksByGroup[activeGroup] || [];
         const taskItems = taskList.querySelectorAll('.task-item');
-        taskItems.forEach(item => item.remove()); // Очищаем текущий список
+        taskItems.forEach(item => item.remove());
 
         tasks.forEach(task => {
             const taskItem = document.createElement('div');
@@ -54,6 +53,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             `;
             taskList.appendChild(taskItem);
+            // Применяем анимацию к каждому новому элементу
+            taskItem.style.animation = 'slideUp 0.3s ease-out forwards';
         });
     }
 
@@ -96,13 +97,22 @@ document.addEventListener('DOMContentLoaded', function() {
         renderTasks();
     }
 
-    // Добавление задачи
+    // Добавление задачи с анимацией
     function addTask(text) {
         if (!text || text.trim() === '') return;
 
         if (!tasksByGroup[activeGroup]) tasksByGroup[activeGroup] = [];
         tasksByGroup[activeGroup].unshift({ text, completed: false });
+
         renderTasks();
+        
+        // Находим последний добавленный .task-item для анимации
+        const taskItems = taskList.querySelectorAll('.task-item');
+        const lastTaskItem = taskItems[taskItems.length - 1];
+        if (lastTaskItem) {
+            lastTaskItem.style.animation = 'slideUp 0.3s ease-out forwards';
+        }
+
         taskInput.value = '';
     }
 
@@ -111,13 +121,22 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.key === 'Enter') addTask(taskInput.value.trim());
     });
 
-    // Удаление задачи
-    window.deleteTask = function(icon) {
+    // Удаление задачи с анимацией
+    window.deleteTask = function (icon) {
         const taskItem = icon.closest('.task-item');
         const taskText = taskItem.querySelector('.task-text').textContent;
-        tasksByGroup[activeGroup] = tasksByGroup[activeGroup].filter(task => task.text !== taskText);
-        renderTasks();
+    
+        // Добавляем класс анимации удаления
+        taskItem.classList.add('removing');
+    
+        // Ждем окончания анимации, затем удаляем элемент из DOM
+        setTimeout(() => {
+            taskItem.remove(); // Удаляем элемент
+            tasksByGroup[activeGroup] = tasksByGroup[activeGroup].filter(task => task.text !== taskText);
+            renderTasks();
+        }, 300); // 0.3s — длительность анимации
     };
+    
 
     // Редактирование задачи
     window.editTask = function(icon) {
@@ -206,8 +225,4 @@ document.addEventListener('DOMContentLoaded', function() {
     updateDateTime();
     setInterval(updateDateTime, 1000);
 
-    document.getElementById("burger-btn").addEventListener("click", function() {
-        document.querySelector("header").classList.toggle("open");
-        document.getElementById("nav-buttons").classList.toggle("open");
-    })
 });
