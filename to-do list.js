@@ -205,4 +205,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     updateDateTime();
     setInterval(updateDateTime, 1000);
+
+    document.getElementById("burger-btn").addEventListener("click", function() {
+        document.querySelector("header").classList.toggle("open");
+        document.getElementById("nav-buttons").classList.toggle("open");
+    })
 });
