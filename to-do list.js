@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
             taskItem.innerHTML = `
                 <input class="check-box" type="checkbox" ${task.completed ? 'checked' : ''}>
                 <span class="task-text" style="text-decoration: ${task.completed ? 'line-through' : 'none'}; opacity: ${task.completed ? '0.5' : '1'}">${task.text}</span>
-                <div class="verticalLine-item">/</div>
+                <div class="verticalLine-item"></div>
                 <div class="task-icons">
                     <span class="icon" onclick="editTask(this)">⚙️</span>
                     <span class="icon" onclick="deleteTask(this)">🗑️</span>
@@ -129,12 +129,12 @@ document.addEventListener('DOMContentLoaded', function() {
         // Добавляем класс анимации удаления
         taskItem.classList.add('removing');
     
-        // Ждем окончания анимации, затем удаляем элемент из DOM
+        // Ждем окончания анимации
         setTimeout(() => {
             taskItem.remove(); // Удаляем элемент
             tasksByGroup[activeGroup] = tasksByGroup[activeGroup].filter(task => task.text !== taskText);
             renderTasks();
-        }, 300); // 0.3s — длительность анимации
+        }, 300); 
     };
     
 

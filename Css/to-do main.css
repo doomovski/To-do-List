@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
-
+/* Анимация событий */
 @keyframes slideUp {
   from {
       opacity: 0;
@@ -22,12 +22,8 @@
     }
 }
 
-/* Стили для задачи при добавлении */
 
-
-/* Стили для задачи при удалении */
-
-
+/* Параметры контейнеров */
 body {
   background: url('/Resources/back.jpg') no-repeat center center fixed; 
   background-size: cover;
@@ -61,10 +57,8 @@ a {
   display: flex;
   flex-direction: column;
 }
-.header-burger-btn{
-  display: none;
-}
 
+/* Стили бокового хеддера */
 .logo {
   padding: 10px;
   color: white;
@@ -103,7 +97,7 @@ a {
   align-items: center;
   justify-content: center;
 }
-
+/* Навигационные кнопки */
 .button {
   backdrop-filter: blur(10px);
   opacity: 1;
@@ -127,7 +121,7 @@ a {
   background: rgba(140, 140, 140, 0.2);
   opacity: 0.9;
 }
-
+/* Создание группы кнопка */
 .button-create {
   backdrop-filter: blur(10px);
   opacity: 1;
@@ -161,7 +155,7 @@ a {
   border-style: groove;
 
 }
-
+/* Плашка с датой и временем */
 .date-time {
   backdrop-filter: blur(10px);
   opacity: 0.8;
@@ -207,6 +201,7 @@ a {
   font-weight: 100;
 }
 
+/* Основная панель с задачами */
 .task-list {
   height: auto;
   display: flex;
@@ -221,7 +216,7 @@ a {
   overflow-y: auto;
   margin-bottom: 30px;
 }
-
+/* Поисковая строка с кнопкой создания*/
 .search-bar {
   display: flex;
   align-items: center;
@@ -272,7 +267,7 @@ a {
 .task-list{
   height: 100%;
 }
-
+/* Оформление плашки с задачей*/
 .task-item {
   backdrop-filter: blur(10px);
   opacity: 0.8;
@@ -327,7 +322,8 @@ a {
   align-items: center;
 }
 
-
+/* Медиа запрос для ноутбуков-планшетов*/
+/* Уменьшаем все элементы*/
 @media only screen and (max-width: 1300px) {
  
   body {
@@ -456,8 +452,10 @@ a {
     margin-left: 20px;
   }
 }
+
+/* Медиа запрос для мини-планшетов и телефонов*/
 @media only screen and (max-width: 920px) {
-  
+  /*Меняем ориентацию сайта*/
   body {
     flex-direction: column;
     justify-content: center;
@@ -473,8 +471,7 @@ a {
     flex-direction: column;
     vertical-align: middle;
   }
-
-  
+  /*Скрываем некоторые элементы*/
   .date-time {
     display: none;
   }
@@ -483,7 +480,6 @@ a {
     display: none;
   }
 
- 
   .container {
     display: flex;
     width: 100%;
@@ -491,7 +487,7 @@ a {
     flex-direction: column; 
   }
 
-  
+  /*Разворачиваем хеддер на 90 градусов*/
   .header {
     padding: 0;
     margin: 0;
@@ -514,8 +510,6 @@ a {
     gap: 20px; 
   }
 
-  
-  
   .logo {
     margin-top: 7px;
     font-weight: 200;
@@ -526,7 +520,7 @@ a {
     display: none; 
   }
 
-  
+  /*Растягиваем блоки на всю ширину экрана*/
   .main {
     width: 100%;
     height: auto; 
@@ -545,7 +539,7 @@ a {
     
   }
 
-  
+  /*Поисковая строка*/
   .search-bar {
     width: 100%;
     display: flex;
@@ -581,7 +575,7 @@ a {
     color: rgba(255, 255, 255, 0.574);
     position: relative;
   }
-
+  /*Меняем наполнение кнопки*/
   .button-do::before {
     content: '+';
     font-size: 20pt;

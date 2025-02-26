@@ -7,39 +7,45 @@
     <link rel="stylesheet" href="/Css/to-do main.css">
 </head>
 <body>
-  <div class="major">
-    <div class="container">
-      <header class="header">
-        <div class="logo">
-          <a href="to-do home.html">To-Do List</a>
-        </div>
-        <div class="create-line"></div>
-        <nav class="nav-buttons" id="nav-buttons">
-            <div class="button">Дела на сегодня</div>
-            <div class="button-create">Создать новую группу</div>
-        </nav>
-      </header>
-      </div>
-      <div class="main">
-        <div class="date-time">
-          <div class="now">
-              <span class="date">Сегодня</span>
-              <div class="date2">Вторник, 23 февраля</div>
-          </div>
-          <div class="verticalLine">/</div>
-          <span class="time">11:33:01</span>
-        </div>
-        <div class="task-list">
-            <div class="search-bar">
-                <span>🗑️</span>
-                <input class="add-task" type="text" placeholder="Добавить задачу"/>
-                <div class="button-do"></div>
+    <!-- Главный контейнер -->
+    <div class="major">
+        <div class="container">
+          <!-- Боковой хеддер сайта -->
+          <header class="header">
+            <!-- Логотип сайта -->
+            <div class="logo">
+              <a href="to-do home.html">To-Do List</a>
             </div>
+            <div class="create-line"></div>
+            <!-- Навигация по группа -->
+            <nav class="nav-buttons" id="nav-buttons">
+                <div class="button">Дела на сегодня</div>
+                <div class="button-create">Создать новую группу</div>
+            </nav>
+          </header>
+        </div>
+        <!-- Основная часть сайта -->
+        <div class="main">
+          <!-- Время и дата -->
+          <div class="date-time">
+            <div class="now">
+                <span class="date">Сегодня</span>
+                <div class="date2">Вторник, 23 февраля</div>
+            </div>
+            <div class="verticalLine">.</div>
+            <span class="time">11:33:01</span>
+          </div>
+            <!-- Список задач -->
+          <div class="task-list">
+            <div class="search-bar">
+              <span>🗑️</span>
+              <input class="add-task" type="text" placeholder="Добавить задачу"/>
+              <div class="button-do"></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  
-    <script src="/to-do list.js"></script>
+  <script src="/to-do list.js"></script>
 </body>
 </html>
